@@ -11,14 +11,13 @@ COMMON_DIR = OUTPUTS_DIR / "common"
 YOLO_DIR = OUTPUTS_DIR / "yolo"
 RUNS_DIR = OUTPUTS_DIR / "runs"
 
-FINAL_CLASSES = ["amarillo", "azul", "verde", "marron", "gris"]
+FINAL_CLASSES = ["amarillo", "azul", "verde", "gris"]
 
 CLASS_NAME_TO_IDX = {
     "amarillo": 0,
     "azul": 1,
     "verde": 2,
-    "marron": 3,
-    "gris": 4,
+    "gris": 3,
 }
 
 GROUP_MAP = {
@@ -72,7 +71,7 @@ GROUP_MAP = {
     "Glass cup": "verde",
     "Glass jar": "verde",
 
-    "Food waste": "marron",
+    # "Food waste": "marron",
 
     "Battery": "gris",
     "Foam cup": "gris",

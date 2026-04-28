@@ -27,14 +27,14 @@ def train_yolo(model_name, epochs, imgsz, batch, run_name, device, use_aug):
 
     if use_aug:
         train_args.update({
-            "hsv_h": 0.015,
-            "hsv_s": 0.7,
-            "hsv_v": 0.4,
-            "translate": 0.1,
-            "scale": 0.3,
+            "hsv_h": 0.01,
+            "hsv_s": 0.5,
+            "hsv_v": 0.3,
+            "translate": 0.05,
+            "scale": 0.2,
             "fliplr": 0.5,
-            "mosaic": 1.0,
-            "mixup": 0.1,
+            "mosaic": 0.5,
+            "mixup": 0.05,
         })
 
     results = model.train(**train_args)
