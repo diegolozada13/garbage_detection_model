@@ -4,3 +4,4 @@ tqdm
 pyyaml
 pandas
 matplotlib
+tabulate
