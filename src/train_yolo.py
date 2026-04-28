@@ -1,12 +1,11 @@
 import argparse
-from pathlib import Path
 
 from ultralytics import YOLO
 
 from src.config import YOLO_DIR, RUNS_DIR
 
 
-def train_yolo(model_name, epochs, imgsz, batch, run_name, device):
+def train_yolo(model_name, epochs, imgsz, batch, run_name, device, use_aug):
     data_yaml = YOLO_DIR / "data.yaml"
 
     if not data_yaml.exists():
@@ -16,16 +15,29 @@ def train_yolo(model_name, epochs, imgsz, batch, run_name, device):
 
     model = YOLO(model_name)
 
-    results = model.train(
-        data=str(data_yaml),
-        epochs=epochs,
-        imgsz=imgsz,
-        batch=batch,
-        project=str(RUNS_DIR),
-        name=run_name,
-        device=device,
-    )
+    train_args = {
+        "data": str(data_yaml),
+        "epochs": epochs,
+        "imgsz": imgsz,
+        "batch": batch,
+        "project": str(RUNS_DIR),
+        "name": run_name,
+        "device": device,
+    }
 
+    if use_aug:
+        train_args.update({
+            "hsv_h": 0.015,
+            "hsv_s": 0.7,
+            "hsv_v": 0.4,
+            "translate": 0.1,
+            "scale": 0.3,
+            "fliplr": 0.5,
+            "mosaic": 1.0,
+            "mixup": 0.1,
+        })
+
+    results = model.train(**train_args)
     return results
 
 
@@ -38,6 +50,7 @@ def main():
     parser.add_argument("--batch", type=int, default=16)
     parser.add_argument("--name", type=str, default="yolo_baseline")
     parser.add_argument("--device", type=str, default="0")
+    parser.add_argument("--aug", action="store_true")
 
     args = parser.parse_args()
 
@@ -48,6 +61,7 @@ def main():
         batch=args.batch,
         run_name=args.name,
         device=args.device,
+        use_aug=args.aug,
     )
 
 
