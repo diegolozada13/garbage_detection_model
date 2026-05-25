@@ -219,5 +219,40 @@ __marimo__/
 
 
 raw/
-outputs/
 raw_new/
+
+# Generated artifacts (ignored by default)
+**/outputs/**
+
+# Allow curated artifacts useful for plots/tables
+!outputs/common/
+!outputs/common/common_dataset.json
+
+!outputs/runs/
+!outputs/runs/**/
+!outputs/runs/**/args.yaml
+!outputs/runs/**/results.csv
+!outputs/runs/**/results.png
+!outputs/runs/**/confusion_matrix*.png
+!outputs/runs/**/*_curve.png
+!outputs/runs/**/labels.jpg
+# (Optional) Qualitative examples (uncomment if you want them in git)
+# !outputs/runs/**/val_batch*_pred.jpg
+# !outputs/runs/**/val_batch*_labels.jpg
+
+!YOLO_implementation_new/outputs/runs/
+!YOLO_implementation_new/outputs/runs/**/
+!YOLO_implementation_new/outputs/runs/**/args.yaml
+!YOLO_implementation_new/outputs/runs/**/results.csv
+!YOLO_implementation_new/outputs/runs/**/results.png
+!YOLO_implementation_new/outputs/runs/**/confusion_matrix*.png
+!YOLO_implementation_new/outputs/runs/**/*_curve.png
+!YOLO_implementation_new/outputs/runs/**/labels.jpg
+# (Optional) Qualitative examples (uncomment if you want them in git)
+# !YOLO_implementation_new/outputs/runs/**/val_batch*_pred.jpg
+# !YOLO_implementation_new/outputs/runs/**/val_batch*_labels.jpg
+
+# Keep heavy and noisy artifacts ignored
+**/outputs/runs/**/weights/
+**/outputs/runs/**/weights/**
+**/outputs/runs/**/train_batch*.jpg
